@@ -1,0 +1,107 @@
+// 9.1 문자 변수 선언하기 //
+// 작은 따옴표로 문자를 넣어 정수로 출력
+#include <stdio.h>
+ 
+int main()
+{
+    char c1 = 'a';    // 문자 변수를 선언하고 문자 a를 저장
+    char c2 = 'b';    // 문자 변수를 선언하고 문자 b를 저장
+ 
+    // char를 %c로 출력하면 문자가 출력되고, %d로 출력하면 정숫값이 출력됨
+    printf("%c, %d\n", c1, c1);    // a, 97: a의 ASCII 코드값은 97
+    printf("%c, %d\n", c2, c2);    // b, 98: b의 ASCII 코드값은 98
+ 
+    return 0;
+}
+
+// 정수만으로 문자 자료형 사용
+#include <stdio.h>
+
+int main()
+{
+    char c1 = 97;    // a의 ASCII 코드값 97 저장
+    char c2 = 98;    // b의 ASCII 코드값 98 저장
+
+    // char를 %c로 출력하면 문자가 출력되고, %d로 출력하면 정숫값이 출력됨
+    printf("%c, %d\n", c1, c1); // a, 97
+    printf("%c, %d\n", c2, c2); // b, 98
+
+    return 0;
+}
+
+//서식 지정자로 %x 사용
+#include <stdio.h>
+
+int main()
+{
+    char c1 = 0x61;    // a의 ASCII 코드값 0x61 할당
+    char c2 = 0x62;    // b의 ASCII 코드값 0x62 할당
+
+    // char를 %c로 출력하면 문자가 출력되고, %d로 출력하면 정수 값이 출력됨
+    // %x로 출력하면 16진수로 출력됨
+    printf("%c, %d, 0x%x\n", c1, c1, c1);    // a, 97, 0x61
+    printf("%c, %d, 0x%x\n", c2, c2, c2);    // b, 98, 0x62
+
+    return 0;
+}
+
+// 9.2 문자로 연산하기 //
+// 문자에 정수 연산
+#include <stdio.h>
+
+int main()
+{
+    printf("%c %d\n", 'a' + 1, 'a' + 1);    // b 98: a는 ASCII 코드값 97이고, 
+                                            // 97에 1을 더하여 98이 되었으므로 b가 출력됨
+
+    printf("%c %d\n", 97 + 1, 97 + 1);      // b 98: ASCII 코드값 97에 1을 더하여 98이 되었으므로 
+                                            // b가 출력됨
+
+    return 0;
+}
+
+// char 변수에 정수 연산
+#include <stdio.h>
+
+int main()
+{
+    char c1 = 'a';
+    
+    printf("%c %d\n", c1 + 1, c1 + 1);
+
+    printf("%c %d\n", 97 + 1, 97 + 1);
+    // 결과값: b 98
+    //         b 98
+
+    return 0;
+}
+
+// 9.3 제어 문자 사용하기 //
+// 문자 자료형에 제어 문자 저장
+#include <stdio.h>
+
+int main()
+{
+    char c1 = 'a';           // 문자 a 할당
+    char c2 = 'b';           // 문자 b 할당
+    char linefeed = '\n';    // 제어 문자 \n 할당
+
+    printf("%c%c%c%c", c1, linefeed, c2, linefeed);    // 제어 문자도 %c로 출력 가능
+    // 결과값:a
+    //        b
+
+    return 0;
+}
+
+// 제어 문자에 ASCII 코드 출력
+#include <stdio.h>
+
+int main()
+{
+    char linefeed = '\n';
+
+    printf("%d 0x%x", linefeed, linefeed);
+    // 결과값: 10 0xa
+
+    return 0;
+}
