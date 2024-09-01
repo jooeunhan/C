@@ -1,0 +1,71 @@
+// 11.1 정수 입력받기 //
+#define _CRT_SECURE_NO_WARNINGS    //scanf 보안 경고로 인한 컴파일 에러 방지 (visual studio에서만 사용)
+#include <stdio.h>
+
+int main()
+{
+	int num1;
+
+	printf(" 정수를 입력하세요: ");
+	scanf("%d", &num1);    // 표준 입력을 받아서 변수에 저장: &를 반드시 붙여줘야 함 (unit 63에서 확인)
+
+	printf("%d\n", num1);    // 변수의 내용을 출력
+	// 결과값: 정수를 입력하세요: 
+  // 이때 결과값 옆에 정수 하나를 입력하면 printf에 의해 다음 줄에 그 정수가 입력됨 (변수 내용 출력)
+
+	return 0;
+}
+// +) #define _CRT_SECURE_NO_WARNINGS를 넣지 않고 scanf 함수를 사용하면 컴파일 에러가 발생
+
+// scanf_s 함수를 대신 사용하거나 _CRT_SECURE_NO_WARNINGS를 사용하라고 나옴
+// scanf_s 함수는 입력 값의 길이를 설정할 수 있지만 C 언어 표준 함수는 아니며 Visual studio(Visual C++) 전용
+
+// 11.2 한 번에 정수 두 개 입력받기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int num1, num2;
+
+	printf("정수를 두 개 입력하세요: ");
+	scanf("%d %d", &num1, &num2);
+
+	printf("%d %d\n", num1, num2);
+	// 메커니즘은 11.1과 동일, 원하는 변수 개수만큼 작성하여 출력
+
+	return 0;
+}
+
+// 11.3 실수 입력받기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	float num1;
+
+	printf("실수를 입력하세요: ");
+	scanf("%f", &num1);
+
+	printf("%f\n", num1);
+	// 정수와 마찬가지로 실수를 입력받아 변수에 저장하는 것은 동일, 서식지정자는 float니까 f로, 마찬가지로 응용해서 넣을 수 있음
+
+	return 0;
+}
+
+// 11.4 문자 입력받기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	char c1;    // 문자 입력이니까 char 변수
+
+	printf("문자를 입력하세요: ");
+	scanf("%c", &c1);
+
+	printf("%c\n", c1);
+
+	return 0;
+}
