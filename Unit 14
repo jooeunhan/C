@@ -1,0 +1,97 @@
+// 14.1 곱셈, 나눗셈하기 //
+// 정수 연산
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+    int num2;
+
+    // 우리가 아는 곱셈 나눗셈 기호가 아닌 *, / 를 사용
+    num1 = 2 * 3;    // 결과값: 6
+    num2 = 7 / 2;    // 결과값: 3 (c 언어에서는 소수점 부분을 나타내지 않음)
+
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+    // 0을 나눌 수 없음
+
+    return 0;
+}
+
+// 실수 연산
+#include <stdio.h>
+
+int main()
+{
+    float num1;
+    float num2;
+
+    num1 = 2.73f * 3.81f;
+    num2 = 7.0f / 2.0f;
+
+    printf("%f\n", num1);    // 결과값: 10.401299 (10.4013이 원래 정답이지만 오차가 발생, 모든 사칙연산에서 발생할 수 있음)
+    printf("%f\n", num2);    // 결과값: 3.500000 (정수 연산과 달리 소수점 부분까지 나옴)
+    // 0으로 나누면 무한대가 나옴
+
+    return 0;
+}
+
+// 14.2 변수 하나에서 값을 곱하거나 나누기 //
+// 기본형
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 2;
+    int num2 = 7;
+
+    num1 = num1 * 3;    // 결과값: 6
+    num2 = num2 / 2;    // 결과값: 3
+
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+
+    return 0;
+}
+
+// 연산자 할당
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 2;
+    int num2 = 7;
+
+    num1 *= 3;
+    num2 /= 2;
+
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+
+    return 0;
+}
+
+// 14.5 심사문제 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+int main()
+{
+    float diameter;
+    float radius;
+    float area;
+
+    scanf("%f", &diameter);
+
+    radius = diameter / 2;
+    area = radius * radius * M_PI;
+
+    printf("%f\n", area);
+
+    return 0;
+}
