@@ -125,3 +125,34 @@ int main()
 }
 
 // 심사문제: 합격 여부 판단하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int a, b, c, d;
+    int average;
+
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+
+    if ((a >= 0) && (a <= 100) && (b >= 0) && (b <= 100) && (c >= 0) && (c <= 100) && (d >= 0) && (d <= 100))
+    {
+        average = (a + b + c + d) / 4;
+
+        if (average >= 85)
+        {
+            printf("합격\n");
+        }
+        else
+        {
+            printf("불합격\n");
+        }
+
+    }
+    else
+    {
+        printf("잘못된 점수\n");
+    }
+
+    return 0;
+}
