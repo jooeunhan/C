@@ -1,0 +1,90 @@
+// 16.1 자료형의 확장 알아보기 //
+// 정수와 실수의 연산
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 11;
+    float num2 = 4.4f;
+
+    printf("%f\n", num1 + num2);
+    printf("%f\n", num1 - num2);
+    printf("%f\n", num1 * num2);
+    printf("%f\n", num1 / num2);
+
+    /* 정수와 실수를 연산할 경우 표현 범위가 더 넓은 실수로 표현됨
+       >> 암시적 형 변환 */
+
+    return 0;
+}
+
+// 크기가 다른 정수끼리의 연산
+#include <stdio.h>
+
+int main()
+{
+    long long num1 = 123456789000;
+    int num2 = 10;
+
+    printf("%lld\n", num1 + num2);
+    printf("%lld\n", num1 - num2);
+    printf("%lld\n", num1 * num2);
+    printf("%lld\n", num1 / num2);
+
+    /* int는 4byte, long long은 8byte이므로 long long으로 변환 */
+
+    return 0;
+}
+
+// 16.2 자료형의 축소 알아보기 //
+// 실수에서 정수로 변환 >> 값의 손실이 발생 (형 축소)
+#include <stdio.h>
+
+int main()
+{
+    float num1 = 11.0f;
+    float num2 = 5.0f;
+
+    int num3 = num1 / num2;
+    /* 실수에서 실수를 나누어 2.2f가 나왔지만
+       정수 자료형에는 2만 저장되고 0.2는 버려짐*/
+
+    printf("%d\n", num3);    //2
+
+    return 0;
+}
+/* 컴파일 경고가 나오지 않게 하려면 형 변환을 해야 함 */
+
+// 크기가 다른 정수의 연산
+#include <stdio.h>
+
+int main()
+{
+    char num1 = 28;
+    int num2 = 100000002;
+
+    char num3 = num1 + num2;
+
+    printf("%d\n", num3);    // 30
+    /* char 보다 큰 연산을 할 경우 char에 해당하는 값만
+       출력되므로 30이 출력 */
+
+    return 0;
+}
+
+// 심사문제
+# define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    float num1;
+
+    scanf("%f", &num1);
+
+    int num2 = num1;
+
+    printf("%d\n", num2);
+
+    return 0;
+}
