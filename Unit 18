@@ -102,7 +102,7 @@ int main()
     return 0;
 }
 
-// 심사문제
+// 심사문제: else 사용하기
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -123,3 +123,5 @@ int main()
 
     return 0;
 }
+
+// 심사문제: 합격 여부 판단하기
