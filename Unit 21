@@ -1,0 +1,125 @@
+// 21.1 AND 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    printf("%d\n", 1 && 1);    // 1
+    printf("%d\n", 1 && 0);    // 0
+    printf("%d\n", 0 && 1);    // 0
+    printf("%d\n", 0 && 0);    // 0
+
+    printf("%d\n", 2 && 3);    // 1
+// 두 값이 모두 참일 때만 참 (1)
+// && 연산자의 앞의 값이 0 일때는 뒤에 값 상관없이 무조건 거짓이므로 0
+
+    return 0;
+}
+
+// 21.2 OR 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    printf("%d\n", 1 || 1);    // 1
+    printf("%d\n", 1 || 0);    // 1
+    printf("%d\n", 0 || 1);    // 1
+    printf("%d\n", 0 || 0);    // 0
+
+    printf("%d\n", 2 || 3);    // 1
+// || 연산자는 두 값 중 하나만 참이여도 참이므로 앞에 값이 0이 아니라면 무조건 1
+
+    return 0;
+}
+
+// 21.3 NOT 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    printf("%d\n", !1);    // 0
+    printf("%d\n", !0);    // 1
+
+    printf("%d\n", !3);    // 0
+// ! 연산자는 참을 거짓으로 거짓을 참으로 논릿값을 뒤집으므로 0은 1로, 1은 0으로 출
+
+    return 0;
+}
+
+// 21.4 조건식과 논리 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 20;
+    int num2 = 10;
+    int num3 = 30;
+    int num4 = 15;
+
+    printf("%d\n", num1 > num2 && num3 > num4);    // 1
+    printf("%d\n", num1 > num2 && num3 < num4);    // 0
+
+    printf("%d\n", num1 > num2 || num3 < num4);    // 1
+    printf("%d\n", num1 < num2 || num3 < num4);    // 0
+
+    printf("%d\n", !(num1 > num2));    // 0
+
+    return 0;
+}
+
+// 21.5 if 조건문과 논리 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 1;
+    int num2 = 0;
+
+    if (num1 && num2)
+        printf("참\n");
+    else
+        printf("거짓\n");    // 거짓
+
+    if (num1 || num2)
+        printf("참\n");
+    else
+        printf("거짓\n");    // 참
+
+    if (!num1)
+        printf("참\n");
+    else
+        printf("거짓\n");    // 거짓
+
+    return 0;
+}
+
+// 21.6 삼항 연산자에 논리 연산자 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 1;
+    int num2 = 0;
+
+    printf("%s\n", num1 && num2 ? "참" : "거짓");     // 거짓
+    printf("%s\n", num1 || num2 ? "참" : "거짓");     // 참
+
+    return 0;
+}
+
+// 심사문제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+    int num2;
+
+    scanf("%d %d", &num1, &num2);
+
+    printf("%s\n", num1 && num2 ? "참" : "거짓");
+    printf("%s\n", num1 || num2 ? "참" : "거짓");
+    printf("%s\n", !num1 ? "참" : "거짓");
+
+    return 0;
+}
