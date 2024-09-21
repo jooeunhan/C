@@ -1,0 +1,91 @@
+// 25.1 괄호 사용하기 //
+// 괄호 X
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    num1 = 35 + 1 * 2;
+
+    printf("%d\n", num1);    // 37
+
+    return 0;
+}
+
+// 괄호 O
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    num1 = (35 + 1) * 2;
+
+    printf("%d\n", num1);    // 72
+
+    return 0;
+}
+
+// 25.2 연산자의 결합 방향 알아보기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 1;
+    int num2;
+
+    num2 = ++num1;
+
+    printf("%d\n", num2);    // 2
+
+    return 0;
+}
+
+// 25.3 결합 방향이 다른 연산자와 괄호 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+    int num2 = 3;
+
+    num1 = 10 + 2 / (5 - 3) * ++num2;
+
+    printf("%d\n", num1);    // 14
+
+    return 0;
+}
+
+// 25.4 논리, 비교, 시프트 연산자에 괄호 사용하기 //
+// 논리 연산자 우선순위
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    bool b1;
+
+    b1 = (false || false) && !false || false;
+
+    printf("%d\n", b1);    // 0
+
+    return 0;
+}
+
+// 비교 연산자 우선순위
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    int num1;
+
+    num1 = 5 == 5 < 10;
+
+    printf("%d\n", num1);    // 0
+
+    return 0;
+}
+
+// 시프트 연산자와 산술 연산자의 혼합 우선순위
