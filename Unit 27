@@ -1,0 +1,193 @@
+// 27.1 for 반복문 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; i < 100; i++)    // 0부터 99까지 증가하면서 100번 반복
+    // int i = 0 (초기식), i < 100 (조건식), i++ (변화식)
+    {
+        printf("Hello, world!\n");
+    }
+
+    return 0;
+}
+
+// 27.2 초깃값의 변화 알아보기 //
+#include <stdio.h>
+
+int main()
+{
+    int i;
+    for (i = 0; i < 10; i++)
+    {
+        printf("Hello, world!\n");
+    }
+
+    printf("%d\n", i);
+
+    return 0;
+}
+
+// 27.3 초깃값을 1부터 시작하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        printf("Hello, world! %d\n", i);
+    }
+
+    return 0;
+}
+
+// 27.4 초깃값을 감소시키기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 100; i > 0; i--)
+    {
+        printf("Hello, world! %d\n", i);
+    }
+
+    return 0;
+}
+
+// 27.5 for 반복문과 세미콜론 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; i < 100; i++);    // 세미콜론은 if 조건문과 마찬가지로 반복문 뒤에 붙이면 안됨
+    {
+        printf("Hello, world!\n");
+    }
+
+    return 0;
+}
+
+// 27.6 for 반복문에서 중괄호 생략하기 //
+// 코드 한 줄
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; i < 100; i++)
+        printf("Hello, world!\n");    // 코드 한 줄의 경우 중괄호 생략 가
+
+    return 0;
+}
+
+// 코드 두 줄
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; i < 100; i++)
+    {
+        printf("for 반복문\n");
+        printf("Hello, world!\n");
+    }
+
+    return 0;
+}
+
+// 27.7 입력한 횟수대로 반복하기 //
+// 입력한 횟수만큼 반복
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int count;
+
+    scanf("%d", &count);
+
+    for (int i = 0; i < count; i++)
+    {
+        printf("Hello, world! %d\n", i);
+    }
+
+    return 0;
+}
+
+// 초깃값만큼 출력
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int count;
+
+    scanf("%d", &count);
+
+    for (int i = count; i > 0; i--)
+    {
+        printf("Hello, world! %d\n", i);
+    }
+
+    return 0;
+}
+
+// i 지정하지 않고 count 그대로 사용
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int count;
+
+    scanf("%d", &count);
+
+    for (; count > 0; count--)
+    {
+        printf("Hello, world! %d\n", count);
+    }
+
+    return 0;
+}
+
+// 27.8 for 반복문에서 변수 두 개 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0, j = 0; i < 10; i++, j += 2)
+    {
+        printf("i: %d, j: %d\n", i, j);
+    }
+
+    return 0;
+}
+
+// 27.9 for 반복문으로 무한 루프 만들기 //
+#include <stdio.h>
+
+int main()
+{
+    for (;;)
+    {
+        printf("Hello, world!\n");
+    }
+
+    return 0;
+}
+// 이 코드는 무한 루프라서 프로그램이 종료되지 않음
+// Ctrl+C를 입력하여 프로그램을 중단시켜야 함
+
+// 심사문제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    char c;
+
+    scanf("%c", &c);
+
+    for (c = c; c <= 'z'; c++)
+        printf("%c", c);
+
+    return 0;
+}
