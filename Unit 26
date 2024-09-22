@@ -54,3 +54,135 @@ int main()
 }
 
 // 26.3 case에서 break 생략 응용하기 //
+// 기본
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    scanf("%d", &num1);
+
+    switch (num1)
+    {
+    case 1:
+    case 2:
+        printf("1 또는 2입니다.\n");
+        break;     // case 1과 2일 때 모두 받을 수 있음
+    case 3:
+    case 4:
+        printf("3 또는 4입니다.\n");
+        break;
+    default:
+        printf("default\n");
+    }
+
+    return 0;
+}
+
+// if 조건문과 논리 연산자로 표현
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    scanf("%d", &num1);
+
+    if (num1 == 1 | num1 == 2)
+        printf("1 또는 2입니다.\n");
+    else if (num1 == 3 | num1 == 4)
+        printf("3 또는 4입니다.\n");
+    else
+        printf("default\n");
+
+    return 0;
+}
+// 일일이 조건식을 나열해줘야 하기 때문에 처리할 숫자가 많을 경우 case에서 break 생략 방법이 더 유용
+
+// 26.4 case 안에서 변수 선언하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    scanf("%d", &num1);
+
+    switch (num1)
+    {
+    case 1:
+    {
+        int num2 = num1;
+        printf("%d입니다.\n", num2);
+        break;
+    }      // 반드시 중괄호로 묶어줘야 함
+    case 2:
+        printf("2입니다.\n");
+    default:
+        printf("default\n");
+        break;
+    }
+
+    return 0;
+}
+
+// 26.5 switch에서 판별할 수 있는 자료형 알아보기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    char c1;
+
+    scanf("%c", &c1);
+
+    switch (c1)
+    {
+    case 'a':
+        printf("a입니다.\n");
+        break;
+    case 'b':
+        printf("b입니다.\n");
+        break;
+    default:
+        printf("default\n");
+        break;
+    }
+
+    return 0;
+}
+// 변수는 정수 자료형만 사용 가능 (float, double 사용 x)
+// case에 문자 자료형은 사용 가능하지만, 문자열 사용 불가
+
+// 심사문제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    char menu;
+
+    scanf("%c", &menu);
+
+    switch (menu)
+    {
+    case 'f':
+        printf("환타\n");
+        break;
+    case 'c':
+        printf("콜라\n");
+        break;
+    case 'p':
+        printf("포카리스웨트\n");
+        break;
+    default:
+        printf("판매하지 않는 메뉴\n");
+        break;
+    }
+
+    return 0;
+}
