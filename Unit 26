@@ -1,0 +1,56 @@
+// 26.1 사용자가 입력한 값에 따라 문자열 출력하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    scanf("%d", &num1);
+
+    switch (num1)
+    {
+    case 1:    // case 다음에 오는 건 반드시 값이여야 함
+        printf("1입니다.\n");
+        break;
+    case 2:
+        printf("2입니다.\n");
+        break;
+    default:    // 아무 case에도 해당되지 않을 
+        printf("default\n");
+        break;
+    }
+
+    return 0;
+}
+
+// 26.2 case에서 break를 사용하지 않을 때의 동작 알아보기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+
+    scanf("%d", &num1);
+
+    switch (num1)
+    {
+    case 1:
+        printf("1입니다.\n");
+    case 2:
+        printf("2입니다.\n");
+    default:
+        printf("default\n");
+    }
+
+    /* 입력값: 1
+       출력값: 1입니다.
+               2입니다.
+               default*/
+    // 따라서 반드시 break로 해당 case만 출력되도록 해야 함
+
+    return 0;
+}
+
+// 26.3 case에서 break 생략 응용하기 //
