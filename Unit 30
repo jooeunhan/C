@@ -1,0 +1,152 @@
+// 30.1 break로 반복문 끝내기 //
+// while문
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 0;
+
+    while (1)
+    {
+        num1++;
+
+        printf("%d\n", num1);
+
+        if (num1 == 100)
+            break;
+    }
+
+    return 0;
+}
+
+// for문
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 0;
+
+    for (;;)
+    {
+        num1++;
+
+        printf("%d\n", num1);
+
+        if (num1 == 100)
+            break;
+    }
+
+    return 0;
+}
+
+// 30.2 continue로 코드 실행 건너뛰기 //
+// for문
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        if (i % 2 != 0)
+            continue;
+
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// while문
+#include <stdio.h>
+
+int main()
+{
+    int i = 1;
+    while (i <= 100)
+    {
+        i++;
+        if (i % 2 != 0)
+            continue;
+
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// 30.3 입력한 횟수대로 반복하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int count;
+
+    scanf("%d", &count);
+
+    int i = 1;
+    while (1)
+    {
+        printf("%d\n", i);
+
+        if (i == count)
+            break;
+
+        i++;
+    }
+
+    return 0;
+}
+
+// 30.4 입력한 숫자까지 짝수 출력하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int count;
+
+    scanf("%d", &count);
+
+    for (int i = 1; i <= count; i++)
+    {
+        if (i % 2 != 0)
+            continue;
+
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// 심사문제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+    int num2;
+    int i;
+
+    scanf("%d %d", &num1, &num2);
+
+    i = num1;
+
+    while (1)
+    {
+        if (i > num2)
+            break;
+        
+        if (i % 10 == 7)
+        {
+            i++;
+            continue;
+        }
+
+        printf("%d ", i);
+        i++;
+    }
+
+    return 0;
+}
