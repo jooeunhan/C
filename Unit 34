@@ -1,0 +1,158 @@
+// 34.0 포인터 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 10;
+
+    printf("%p\n", &num1);    // 컴바컴 & 실행할 때마다 달라짐, 16진수 형태로 출력
+
+    return 0;
+}
+
+// 34.1 포인터 변수 선언하기 //
+#include <stdio.h>
+
+int main()
+{
+    int* numPtr;   // num1이 저장된 주
+    int num1 = 10;
+   
+    numPtr = &num1;    // num1의 메모리 주소를 포인터 변수에 저장
+
+    printf("%p\n", numPtr);
+
+    printf("%p\n", &num1);
+
+    return 0;
+}
+
+// 34.2 역참조 연산자 사용하기 //
+// 메모리 주소에서 값을 가져오기
+#include <stdio.h>
+
+int main()
+{
+    int* numPtr;
+    int num1 = 10;
+
+    numPtr = &num1;
+
+    printf("%d\n", *numPtr);
+
+    return 0;
+}
+
+// 메모리 값을 할당하기
+#include <stdio.h>
+
+int main()
+{
+    int* numPtr;
+    int num1 = 10;
+
+    numPtr = &num1;
+
+    *numPtr = 20;
+
+    printf("%d\n", *numPtr);
+    printf("%d\n", num1);
+
+    return 0;
+}
+
+// 34.3 디버거에서 포인터 확인하기 //
+// 디버깅 하는 방
+#include <stdio.h>
+
+int main()
+{
+    int* numPtr;
+    int num1 = 10;
+
+    numPtr = &num1;
+
+    *numPtr = 20;    // F9키를 누르고 F5로 디버깅
+
+    printf("%d\n", *numPtr);
+    printf("%d\n", num1);
+
+    return 0;
+}
+
+// 34.4 다양한 자료형의 포인터 선언하기 //
+#include <stdio.h>
+
+int main()
+{
+    long long *numPtr1;
+    float *numPtr2;
+    char *cPtr1;
+
+    long long num1 = 10;
+    float num2 = 3.5f;
+    char c1 = 'a';
+
+    numPtr1 = &num1;
+    numPtr2 = &num2;
+    cPtr1 = &c1;
+
+    printf("%lld\n", *numPtr1);    // 10
+    printf("%f\n", *numPtr2);      // 3.500000
+    printf("c\n", *cPtr1);         // c
+
+    return 0;
+}
+
+// 34.5 void 포인터 선언하기 //
+#include <stdio.h>
+
+int main()
+{
+    int num1 = 10;
+    char c1 = 'a';
+    int* numPtr1 = &num1;
+    char* cPtr1 = &c1;
+
+    void *ptr;
+
+    ptr = numPtr1;
+    ptr = cPtr1;
+
+    numPtr1 = ptr;
+    cPtr1 = ptr;
+
+    return 0;
+}
+
+// 34.6 이중 포인터 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int *numPtr1;
+    int **numPtr2;
+    int num1 = 10;
+
+    numPtr1 = &num1;
+
+    numPtr2 = &numPtr1;    // numPtr1의 메모리 주소 저장
+
+    printf("%d\n", **numPtr2);     // 10
+
+    return 0;
+}
+
+// 34.7 잘못된 포인터 사용 //
+#include <stdio.h>
+
+int main()
+{
+    int *numPtr = 0x100;
+    
+    printf("%d\n", *numPtr);
+
+    return 0;
+}
+
+// 심사문제
