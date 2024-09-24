@@ -1,1 +1,83 @@
+// 33.1 1부터 100까지 숫자 출력하기 //
+#include <stdio.h>
 
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        printf("%d\n", i);
+    }
+         
+    return 0;
+}
+
+// 33.2 3의 배수일 때와 5의 배수일 때 처리하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        if (i % 3 == 0)
+            printf("Fizz\n");
+        else if (i % 5 == 0)
+            printf("Buzz\n");
+        else
+            printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// 33.3 3과 5의 공배수 처리하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        if (i % 3 == 0 && i % 5 == 0)
+            printf("FizzBuzz\n");      // 3이나 5의 배수를 먼저 하지 않고 공배수를 먼저 검사
+        else if (i % 3 == 0)
+            printf("Fizz\n");
+        else if (i % 5 == 0)
+            printf("Buzz\n");
+        else
+            printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// 33.4 논리 연산자를 사용하지 않고 3과 5의 공배수 처리하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 1; i <= 100; i++)
+    {
+        if (i % 15 == 0)    // 15가 3과 5의 공배수라는 것을 알고 있지만 실무에서는 33.3처럼 뜻을 명확하게 하는 것이 좋음
+            printf("FizzBuzz\n");
+        else if (i % 3 == 0)
+            printf("Fizz\n");
+        else if (i % 5 == 0)
+            printf("Buzz\n");
+        else
+            printf("%d\n", i);
+    }
+
+    return 0;
+}
+
+// 33.5 코드 단축하기 //
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; ++i <= 100;)
+        printf(i % 3 ? i % 5 ? "%d\n" : "Buzz\n" : i % 5 ? "Fizz\n" : "FizzBuzz\n", i);
+
+    return 0;
+}
+
+// 심사문제
