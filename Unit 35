@@ -1,0 +1,102 @@
+// 35.1 메모리 할당하기 //
+#include <stdio.h>
+#include <stdlib.h>    // malloc, free 함수가 선언된 헤더 파일
+
+int main()
+{
+    int num1 = 20;    // int형 변수 선언
+    int *numPtr1;     // int형 포인터 선언
+
+    numPtr1 = &num1;  // num1의 메모리 주소를 구하여 numPtr에 할당
+
+    int *numPtr2;     // int형 포인터 선언
+
+    numPtr2 = malloc(sizeof(int));    // int의 크기 4바이트만큼 동적 메모리 할당
+
+    printf("%p\n", numPtr1);    // 006BFA60: 변수 num1의 메모리 주소 출력
+                                // 컴퓨터마다, 실행할 때마다 달라짐
+
+    printf("%p\n", numPtr2);     // 009659F0: 새로 할당된 메모리의 주소 출력
+                                // 컴퓨터마다, 실행할 때마다 달라짐
+
+    free(numPtr2);    // 동적으로 할당한 메모리 해제
+
+    return 0;
+}
+
+// 35.2 메모리에 값 저장하기 //
+#include <stdio.h>
+#include <stdlib.h>    // malloc, free 함수가 선언된 헤더 파일
+
+int main()
+{
+    int *numPtr;    // int형 포인터 선언
+
+    numPtr = malloc(sizeof(int));    // int의 크기 4바이트만큼 동적 메모리 할당
+
+    *numPtr = 10;   // 포인터를 역참조한 뒤 값 할당
+
+    printf("%d\n", *numPtr);    // 10: 포인터를 역참조하여 메모리에 저장된 값 출력
+
+    free(numPtr);    // 동적 메모리 해제
+
+    return 0;
+}
+
+// 35.3 메모리 내용을 한꺼번에 설정하기 //
+#include <stdio.h>
+#include <stdlib.h>    // malloc, free 함수가 선언된 헤더 파일
+#include <string.h>    // memset 함수가 선언된 헤더 파일
+
+int main()
+{
+    long long *numPtr = malloc(sizeof(long long));  // long long의 크기 8바이트만큼 동적 메모리 할당
+
+    memset(numPtr, 0x27, 8);    // numPtr이 가리키는 메모리를 8바이트만큼 0x27로 설정
+
+    printf("0x%llx\n", *numPtr);    // 0x2727272727272727: 27이 8개 들어가 있음
+
+    free(numPtr);    // 동적으로 할당한 메모리 해제
+
+    return 0;
+}
+
+// 35.4 널 포인터 사용하기 //
+#include <stdio.h>
+
+int main()
+{
+    int *numPtr1 = NULL;    // 포인터에 NULL 저장
+
+    printf("%p\n", numPtr1);    // 00000000
+
+    return 0;
+}
+
+// 심사문제
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int num1;
+    int num2;
+
+    int *numPtr1;
+    int* numPtr2;
+    numPtr1 = malloc(sizeof(int));
+    numPtr2 = malloc(sizeof(int));
+
+    scanf("%d %d", &num1, &num2);
+
+    *numPtr1 = num1;
+    *numPtr2 = num2;
+
+    printf("%d\n", *numPtr1 + *numPtr2);
+
+    free(numPtr1);
+    free(numPtr2);
+
+    return 0;
+}
