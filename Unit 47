@@ -107,4 +107,49 @@ int main()
     return 0;
 }
 
-// 심사문제
+// 심사문제: 공백이 포함된 회문 판별
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main()
+{
+    char text[31];
+    int length;
+    int isPalindrome = true;
+    int begin;
+    int end;
+
+    scanf("%[^\n]s", text);
+
+    length = strlen(text);
+
+    if (length > 30)
+    {
+        return 1;
+    }
+
+    else
+    {
+        for (begin = 0, end = length - 1; begin < end; begin++, end--)
+        {
+            while (text[begin] == ' ')
+                begin++;
+            while (text[end] == ' ')
+                end--;
+            
+            if (text[begin] != text[end])
+            {
+                isPalindrome = false;
+                break;
+            }
+        }
+    }
+
+    printf("%d\n", isPalindrome);
+
+    return 0;
+}
+
+// 심사문제: N-gram 만들기
