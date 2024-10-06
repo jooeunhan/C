@@ -1,0 +1,171 @@
+// 48.1 구조체를 만들고 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+int main()
+{
+    struct Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    printf("이름: %s\n", p1.name);
+    printf("나이: %d\n", p1.age);
+    printf("주소: %s\n", p1.address);
+
+    /* 이름: 홍길동
+       나이: 30
+       주소: 서울시 용산구 한남동 */
+
+    return 0;
+}
+
+// 변수 p1 선언
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+} p1;
+
+int main()
+{
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    printf("이름: %s\n", p1.name);
+    printf("나이: %d\n", p1.age);
+    printf("주소: %s\n", p1.address);
+
+    /* 이름: 홍길동
+       나이: 30
+       주소: 서울시 용산구 한남동 */
+
+    return 0;
+}
+
+// 48.2 typedef로 struct 키워드 없이 구조체 선언하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+typedef struct _Person {
+    char name[20];
+    int age;
+    char address[100];
+} Person;
+
+int main()
+{
+    Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    printf("이름: %s\n", p1.name);
+    printf("나이: %d\n", p1.age);
+    printf("주소: %s\n", p1.address);
+
+    return 0;
+}
+
+// 48.3 익명 구조체 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char name[20];
+    int age;
+    char address[100];
+} Person;    // 익명 구조체 사용 시 반드시 구조체 별칭 지정 필수
+
+int main()
+{
+    Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    printf("이름: %s\n", p1.name);
+    printf("나이: %d\n", p1.age);
+    printf("주소: %s\n", p1.address);
+
+    return 0;
+}
+
+// 심사문제: 자동차 계기판 구조체 선언하기
+#include <stdio.h>
+
+struct Dashboard {
+    int speed;
+    char fuel;
+    float mileage;
+    int engineTemp;
+    int rpm;
+};
+
+int main()
+{
+    struct Dashboard d1;
+    
+    d1.speed = 80;
+    d1.fuel = 'F';
+    d1.mileage = 5821.442871;
+    d1.engineTemp = 200;
+    d1.rpm = 1830;
+
+
+    printf("Speed: %dkm/h\n", d1.speed);
+    printf("Fuel: %c\n", d1.fuel);
+    printf("Mileage: %fkm\n", d1.mileage);
+    printf("Engine temp: %d℃\n", d1.engineTemp);
+    printf("RPM: %d\n", d1.rpm);
+
+    return 0;
+}
+
+// 심사문제: 자동차 계기판 구조체 정의하기
+#include <stdio.h>
+
+typedef struct _Dashboard {
+    int speed;
+    char fuel;
+    float mileage;
+    int engineTemp;
+    int rpm;
+} Dashboard;
+
+int main()
+{
+    Dashboard d1;
+    
+    d1.speed = 80;
+    d1.fuel = 'F';
+    d1.mileage = 5821.442871;
+    d1.engineTemp = 200;
+    d1.rpm = 1830;
+
+
+    printf("Speed: %dkm/h\n", d1.speed);
+    printf("Fuel: %c\n", d1.fuel);
+    printf("Mileage: %fkm\n", d1.mileage);
+    printf("Engine temp: %d℃\n", d1.engineTemp);
+    printf("RPM: %d\n", d1.rpm);
+
+    return 0;
+}
