@@ -1,0 +1,263 @@
+// 55.1 구조체 안에서 구조체 멤버 사용하기 //
+#include <stdio.h>
+
+struct Phone {
+	int areacode;
+	unsigned long long number;
+};
+
+struct Person {
+	char name[20];
+	int age;
+	struct Phone phone;
+};
+
+int main()
+{
+	struct Person p1;
+
+	p1.phone.areacode = 82;
+	p1.phone.number = 3045671234;
+
+	printf("%d %llu", p1.phone.areacode, p1.phone.number);    // 82 3045671234
+
+    return 0;
+}
+
+// 특정 구조체 안에서만 쓸 경우 (구조체 안에 구조체 정의)
+#include <stdio.h>
+
+struct Person {
+	char name[20];
+	int age;
+	struct Phone {
+		int areacode;
+		unsigned long long number;
+	} phone;    // 반드시 변수를 선언해야 함
+};
+
+int main()
+{
+	struct Person p1;
+
+	p1.phone.areacode = 82;
+	p1.phone.number = 3045671234;
+
+	printf("%d %llu", p1.phone.areacode, p1.phone.number);    // 82 3045671234
+
+    return 0;
+}
+
+// 55.2 구조체 안의 구조체 멤버에 메모리 할당하기 //
+// 구조체 안에 구조체 멤버가 변수로 있는 상태에서 메모리 할당
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Phone {
+	int areacode;
+	unsigned long long number;
+};
+
+struct Person {
+	char name[20];
+	int age;
+	struct Phone phone;
+};
+
+int main()
+{
+	struct Person* p1 = malloc(sizeof(struct Person));
+
+	p1->phone.areacode = 82;
+	p1->phone.number = 3045671234;
+
+	printf("%d %llu", p1->phone.areacode, p1->phone.number);
+
+	free(p1);
+
+    return 0;
+}
+
+// 구조체의 포인터를 멤버로
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Phone {
+	int areacode;
+	unsigned long long number;
+};
+
+struct Person {
+	char name[20];
+	int age;
+	struct Phone *phone;    // 구조체 포인터 선언
+};
+
+int main()
+{
+	struct Person* p1 = malloc(sizeof(struct Person));
+	p1->phone = malloc(sizeof(struct Phone));
+
+	p1->phone->areacode = 82;
+	p1->phone->number = 3045671234;
+
+	printf("%d %llu", p1->phone->areacode, p1->phone->number);
+
+	free(p1->phone);
+  free(p1);
+
+  return 0;
+}
+
+// 55.3 익명 구조체와 익명 공용체 활용하기 //
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Vector3 {
+	union {    // 익명 공용체
+		struct {    // 익명 구조체
+			float x;
+			float y;
+			float z;
+		};
+		float v[3];    // 좌표를 배열로 저장
+	};
+};
+
+int main()
+{
+	struct Vector3 pos;
+
+	for (int i = 0; i < 3; i++)
+	{
+		pos.v[i] = 1.0f;
+	}
+
+	printf("%f %f %f\n", pos.x, pos.y, pos.z);    // 1.000000 1.000000 1.000000
+
+    return 0;
+}
+
+// 심사문제: 게임 캐릭터 구조체 사용하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Stats {
+    float health;
+    float healthRegen;
+    unsigned int mana;
+    float manaRegen;
+    float range;
+    float attackDamage;
+    float armor;
+    float attackSpeed;
+    float magicResist;
+    unsigned int movementSpeed;
+};
+
+struct Champion {
+    char name[20];
+    struct Stats stats;
+    float abilityPower;
+};
+
+int main()
+{
+    struct Champion swain;
+
+    strcpy(swain.name, "Swain");
+    
+    swain.stats.health = 463.0f;
+    swain.stats.healthRegen = 1.48f;
+    swain.stats.mana = 290;
+    swain.stats.manaRegen = 1.49f;
+    swain.stats.range = 500;
+    swain.stats.attackDamage = 52.0f;
+    swain.stats.attackSpeed = 0.625f;
+    swain.stats.armor = 20.0f;
+    swain.stats.magicResist = 30;
+    swain.stats.movementSpeed = 335;
+    swain.abilityPower = 0;
+
+    printf("%s %f\n", swain.name, swain.stats.health);
+
+    return 0;
+}
+
+// 심사문제: 게임 캐릭터 구조체 포인터 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Stats {
+    float health;
+    float healthRegen;
+    unsigned int mana;
+    float manaRegen;
+    float range;
+    float attackDamage;
+    float armor;
+    float attackSpeed;
+    float magicResist;
+    unsigned int movementSpeed;
+};
+
+struct Champion {
+    char name[20];
+    struct Stats *stats;
+    float abilityPower;
+};
+
+int main()
+{
+    struct Champion *swain = malloc(sizeof(struct Champion));
+    swain->stats = malloc(sizeof(struct Stats));
+
+    strcpy(swain->name, "Swain");
+    
+    swain->stats->health = 463.0f;
+    swain->stats->healthRegen = 1.48f;
+    swain->stats->mana = 290;
+    swain->stats->manaRegen = 1.49f;
+    swain->stats->range = 500;
+    swain->stats->attackDamage = 52.0f;
+    swain->stats->attackSpeed = 0.625f;
+    swain->stats->armor = 20.0f;
+    swain->stats->magicResist = 30;
+    swain->stats->movementSpeed = 335;
+    swain->abilityPower = 0;
+
+    printf("%s %f\n", swain->name, swain->stats->health);
+
+    free(swain->stats);
+    free(swain);
+
+    return 0;
+}
+
+// 심사문제: 장치 옵션 구조체 만들기
+#include <stdio.h>
+
+struct DeviceOption {
+	union {
+		short option;
+		struct {
+			unsigned char boot;
+			unsigned char interrupt;
+		};
+	};
+};
+
+int main()
+{
+	struct DeviceOption opt;
+
+	opt.boot = 0x22;
+	opt.interrupt = 0x11;
+
+	printf("0x%x\n", opt.option);
+
+	return 0;
+}
