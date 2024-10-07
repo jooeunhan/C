@@ -18,8 +18,8 @@ int main()
 	p[2].y = 60;
 
 	printf("%d %d\n", p[0].x, p[0].y);    // 10 20
-	printf("%d %d\n", p[1].x, p[1].y);	  // 30 40
-	printf("%d %d\n", p[2].x, p[2].y);	  // 50 60
+	printf("%d %d\n", p[1].x, p[1].y);    // 30 40
+	printf("%d %d\n", p[2].x, p[2].y);    // 50 60
 
 	return 0;
 }
