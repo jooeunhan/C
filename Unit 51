@@ -1,0 +1,116 @@
+// 51.1 구조체 크기 알아보기 //
+#include <stdio.h>
+
+struct PacketHeader {
+    char flags;
+    int seq;
+};
+
+int main()
+{
+    struct PacketHeader header;
+
+    printf("%d\n", sizeof(header.flags));           // 1
+    printf("%d\n", sizeof(header.seq));             // 4
+    printf("%d\n", sizeof(header));                 // 8
+    printf("%d\n", sizeof(struct PacketHeader));    // 8: 1 + 3(남는 공간 - 패딩) + 4
+
+    return 0;
+}
+
+// offsetof 매크로 사용해서 멤버 위치 확인
+#include <stdio.h>
+#include <stddef.h>    //offsetof 매크로 정의된 헤더 파일
+
+struct PacketHeader {
+    char flags;
+    int seq;
+};
+
+int main()
+{
+    printf("%d\n", offsetof(struct PacketHeader, flags));    // 0
+    printf("%d\n", offsetof(struct PacketHeader, seq));      // 4
+
+    return 0;
+}
+
+// 51.2 구조체 정렬 크기 조절하기 //
+#include <stdio.h>
+
+#pragma pack(push, 1)
+struct PacketHeader {
+    char flags;
+    int seq;
+};
+#pragma pack(pop)
+
+int main()
+{
+    struct PacketHeader header;
+
+    printf("%d\n", sizeof(header.flags));    // 1
+    printf("%d\n", sizeof(header.seq));      // 4
+    printf("%d\n", sizeof(header));          // 5
+
+    return 0;
+}
+
+// offsetof 매크로 사용해서 멤버 위치 확인
+#include <stdio.h>
+#include <stddef.h>
+
+#pragma pack(push, 1)
+struct PacketHeader {
+    char flags;
+    int seq;
+};
+#pragma pack(pop)
+
+int main()
+{
+    struct PacketHeader header;
+
+    printf("%d\n", offsetof(struct PacketHeader, flags));    // 0
+    printf("%d\n", offsetof(struct PacketHeader, seq));      // 1
+   
+
+    return 0;
+}
+
+// 심사문제: 암호화 헤더 크기 구하기
+#include <stdio.h>
+
+struct EncryptionHeader {
+    char flags;
+    int seq;
+    int scratch;    // 답은 여러개가 나올 수 있음, 출력값에 맞게만 작성
+};
+
+int main()
+{
+    struct EncryptionHeader header;
+
+    printf("%d\n", sizeof(header));
+
+    return 0;
+}
+
+// 심사문제: 패킷 크기 조절하기
+#include <stdio.h>
+
+#pragma pack(push, 1)
+struct Packet {
+    short shot;
+    char scratch;
+};
+#pragma pack(pop)    // pragma를 쓰지 않으려면 구조체 멤버로 char만 3개 지정해줘도 됨
+
+int main()
+{
+    struct Packet pkt;
+
+    printf("%d\n", sizeof(pkt));
+
+    return 0;
+}
