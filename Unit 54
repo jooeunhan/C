@@ -1,0 +1,148 @@
+// 54.1 공용체를 만들고 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+union Box {
+	short candy;
+	float snack;
+	char doll[8];
+};
+
+int main()
+{
+	union Box b1;
+
+	printf("%d\n", sizeof(b1));    // 8: 공용체의 전체 크기는 가장 큰 자료형의 크기
+
+	strcpy(b1.doll, "bear");
+
+	printf("%d\n", b1.candy);    // 25954
+	printf("%f\n", b1.snack);    // 4464428256607938511036928229376.000000
+	printf("%s\n", b1.doll);     // bear
+
+  return 0;
+}
+
+// 한 번에 하나씩 쓰면 값을 정상적으로 사용
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+union Box {
+	short candy;
+	float snack;
+	char doll[8];
+};
+
+int main()
+{
+	union Box b1;
+
+	printf("%d\n", sizeof(b1));    // 8
+
+	b1.candy = 10;
+	printf("%d\n", b1.candy);    // 10
+
+	b1.snack = 60000.0f;
+	printf("%f\n", b1.snack);    // 60000.00000
+
+	strcpy(b1.doll, "bear");
+	printf("%s\n", b1.doll);    // bear
+
+    return 0;
+}
+
+// 54.2 공용체와 엔디언 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+union Data {
+	char c1;
+	short num1;
+	int num2;
+};
+
+int main()
+{
+	union Data d1;
+
+	d1.num2 = 0x12345678;
+
+	printf("0x%x\n", d1.num2);    // 0x12345678
+	printf("0x%x\n", d1.num1);	  // 0x5678
+	printf("0x%x\n", d1.c1);	  // 0x78
+
+	printf("%d\n", sizeof(d1));	  // 4
+
+    return 0;
+}
+
+// 54.3 공용체 포인터를 선언하고 메모리 할당하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+union Box {
+	short candy;
+	float snack;
+	char doll[8];
+};
+
+int main()
+{
+	union Box* b1 = malloc(sizeof(union Box));
+
+	printf("%d\n", sizeof(union Box));    // 8
+
+	strcpy(b1->doll, "bear");
+
+	printf("%d\n", b1->candy);    // 25954
+	printf("%f\n", b1->snack);    // 4464428256607938511036928229376.000000
+	printf("%s\n", b1->doll);     // bear
+
+	free(b1);
+
+    return 0;
+}
+
+// 심사문제: 정수 데이터 공용체 정의하기
+#include <stdio.h>
+
+union Data {
+	char c1;
+	int num1;
+};
+
+int main()
+{
+	union Data d1;
+
+	d1.num1 = 0x1111;
+
+	printf("0x%x %d\n", d1.c1, sizeof(d1));
+
+    return 0;
+}
+
+// 심사문제: 공용체 포인터 사용하기
+#include <stdio.h>
+#include <stdlib.h>
+
+union Data {
+	short num1;
+	int num2;
+};
+
+int main()
+{
+	union Data* d1 = malloc(sizeof(union Data));
+
+	d1->num2 = 0x11111111;
+
+	printf("0x%x 0x%x\n", d1->num1, d1->num2);
+
+    return 0;
+}
