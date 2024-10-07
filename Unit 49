@@ -1,0 +1,147 @@
+// 49.1 구조체 포인터를 선언하고 메모리 할당하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+int main()
+{
+    struct Person* p1 = malloc(sizeof(struct Person));
+
+    strcpy(p1->name, "홍길동");
+    p1->age = 30;
+    strcpy(p1->address, "서울시 용산구 한남동");
+    
+    printf("이름: %s\n", p1->name);
+    printf("나이: %d\n", p1->age);
+    printf("주소: %s\n", p1->address);
+
+    free(p1);
+
+    return 0;
+}
+
+// 49.2 구조체 별칭으로 포인터를 선언하고 메모리 할당하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct _Person {    // 익명 구조체는 _Person 삭제만 해주면 됨
+    char name[20];
+    int age;
+    char address[100];
+} Person;
+
+int main()
+{
+    Person* p1 = malloc(sizeof(Person));
+
+    strcpy(p1->name, "홍길동");
+    p1->age = 30;
+    strcpy(p1->address, "서울시 용산구 한남동");
+
+    printf("이름: %s\n", p1->name);
+    printf("나이: %d\n", p1->age);
+    printf("주소: %s\n", p1->address);
+
+    free(p1);
+
+    return 0;
+}
+
+// 49.3 구조체 포인터에 구조체 변수의 주소 할당하기 //
+#include <stdio.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+int main()
+{
+    struct Person p1;
+    struct Person* ptr;
+
+    ptr = &p1;
+
+    ptr->age = 30;
+
+    printf("나이: %d\n", p1.age);
+    printf("나이: %d\n", ptr->age);
+
+    return 0;
+}
+
+//심사문제: 사람과 자동차 구조체 포인터에 메모리 할당하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+typedef struct {
+    char name[20];
+    int number;
+    int displacement;
+} Car;
+
+int main()
+{
+    struct Person* p1 = malloc(sizeof(struct Person));
+    Car* c1 = malloc(sizeof(Car));
+
+    strcpy(p1->name, "고길동");
+    p1->age = 40;
+    strcpy(p1->address, "서울시 서초구 반포동");
+
+    strcpy(c1->name, "스텔라");
+    c1->number = 3421;
+    c1->displacement = 2000;
+
+    printf("이름: %s\n", p1->name);
+    printf("나이: %d\n", p1->age);
+    printf("주소: %s\n", p1->address);
+
+    printf("자동차 이름: %s\n", c1->name);
+    printf("자동차 번호: %d\n", c1->number);
+    printf("배기량: %dcc\n", c1->displacement);
+
+    free(p1);
+    free(c1);
+
+    return 0;
+}
+
+// 심사문제: 구조체 포인터에 구조체 변수의 주소 할당하기
+#include <stdio.h>
+
+struct Point3D {
+    float x;
+    float y;
+    float z;
+};
+
+int main()
+{
+    struct Point3D p1 = { 10.0f, 20.0f, 30.0f };
+    struct Point3D* ptr;
+
+    ptr = &p1;
+
+    printf("%f %f %f\n", ptr->x, ptr->y, ptr->z);
+
+    return 0;
+}
