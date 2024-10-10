@@ -1,0 +1,121 @@
+// 56.1 구조체 비트 필드를 만들고 사용하기 //
+#include <stdio.h>
+
+struct Flags {
+	unsigned int a : 1;
+	unsigned int b : 3;
+	unsigned int c : 7;
+};
+
+int main()
+{
+	struct Flags f1;
+
+	f1.a = 1;      // 1: 0000 0001
+	f1.b = 15;     // 15: 0000 1111
+	f1.c = 255;    // 255: 1111 1111
+
+	printf("%u\n", f1.a);    // 1: LSB부터 1비트인 0001만 출력
+	printf("%u\n", f1.b);    // 7: LSB부터 3비트인 0111만 출력
+	printf("%u\n", f1.c);    // 127: LSB부터 7비트인 0111 1111만 출력
+
+	return 0;
+}
+
+// struct의 크기 구하기
+#include <stdio.h>
+
+struct Flags {
+	unsigned int a : 1;
+	unsigned int b : 3;
+	unsigned int c : 7;
+};
+
+int main()
+{
+	printf("%d\n", sizeof(struct Flags));    // 4
+
+	return 0;
+}
+
+// 56.2 비트 필드와 공용체를 함께 사용하기 //
+#include <stdio.h>
+
+struct Flags {
+	union {
+		struct {
+			unsigned short a : 3;
+			unsigned short b : 2;
+			unsigned short c : 7;
+			unsigned short d : 4;    // 합계가 16비
+		};
+		unsigned short e;
+	};
+};
+
+int main()
+{
+	struct Flags f1 = { 0, };
+
+	f1.a = 4;     // 0000 0100
+	f1.b = 2;     // 0000 0010
+	f1.c = 80;    // 0101 0000
+	f1.d = 15;    // 0000 1111
+
+	printf("%u\n", f1.e);    // 64020: 1111 1010000 10 100
+
+	return 0;
+}
+
+// 심사문제: 구조체로 플래그 비트 필드 만들기
+#include <stdio.h>
+
+struct Flags {
+
+	unsigned int a : 4;
+	unsigned int b : 7;
+	unsigned int c : 3;
+
+};
+
+int main()
+{
+	struct Flags f1;
+
+	f1.a = 0xffffffff;
+	f1.b = 0xffffffff;
+	f1.c = 0xffffffff;
+
+	printf("%u %u %u\n", f1.a, f1.b, f1.c);
+
+	return 0;
+}
+
+// 심사문제: 구조체와 공용체로 플래그 비트 필드 만들기
+#include <stdio.h>
+
+struct Flags {
+	union {
+		struct {
+			unsigned short a : 3;
+			unsigned short b : 4;
+			unsigned short c : 7;
+			unsigned short d : 2;
+		};
+		unsigned short e;
+	};
+};
+
+int main()
+{
+	struct Flags f1 = { 0, };
+
+	f1.a = 4;
+	f1.b = 8;
+	f1.c = 64;
+	f1.d = 3;
+
+	printf("%u\n", f1.e);
+
+	return 0;
+}
