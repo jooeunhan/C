@@ -231,7 +231,95 @@ int main()
 }
 
 // 심사문제: 포인터 연산으로 메모리 주소 조작하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    short* numPtrA;
+    short* numPtrB;
+    short* numPtrC;
+
+    scanf("%p", &numPtrA);
+
+    numPtrB = numPtrA + 3;
+    numPtrC = numPtrA + 5;
+
+    printf("%X\n", numPtrB);
+    printf("%X\n", numPtrC);
+
+    return 0;
+}
 
 // 심사문제: 포인터 연산과 역참조 사용하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    int numArr1[3] = { 0, };
+    long long numArr2[3] = { 0, };
+    int* numPtr = malloc(sizeof(int) * 3);
+    void* ptr = malloc(sizeof(long long) * 3);
+    int num1;
+    long long num2;
+
+    scanf("%d %d %d %lld %lld %lld",
+        &numArr1[0], &numArr1[1], &numArr1[2],
+        &numArr2[0], &numArr2[1], &numArr2[2]
+    );
+
+    memcpy(numPtr, numArr1, sizeof(int) * 3);
+    memcpy(ptr, numArr2, sizeof(long long) * 3);
+    numArr1[0] = numArr1[1] = numArr1[2] = 0;
+    numArr2[0] = numArr2[1] = numArr2[2] = 0;
+
+    num1 = *(numPtr + 2);
+    num2 = *((long long*)ptr + 1);
+   
+    printf("%d %lld\n", num1, num2);
+
+    free(ptr);
+    free(numPtr);
+
+    return 0;
+}
 
 // 심사문제: 구조체 포인터로 포인터 연산하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Point3D {
+    float x;
+    float y;
+    float z;
+};
+
+int main()
+{
+    void* ptr = malloc(sizeof(struct Point3D) * 3);
+    struct Point3D p[3];
+    float result1, result2;
+
+    scanf("%f %f %f %f %f %f %f %f %f",
+        &p[0].x, &p[0].y, &p[0].z,
+        &p[1].x, &p[1].y, &p[1].z,
+        &p[2].x, &p[2].y, &p[2].z
+    );
+
+    memcpy(ptr, p, sizeof(struct Point3D) * 3);
+    memset(p, 0, sizeof(struct Point3D) * 3);
+
+    result1 = ((struct Point3D*)ptr + 1)->x;
+    result2 = ((struct Point3D*)ptr + 2)->z;
+
+    printf("%.1f %.1f\n", result1, result2);
+
+    free(ptr);
+
+    return 0;
+}
