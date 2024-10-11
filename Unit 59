@@ -1,0 +1,237 @@
+// 59.1 포인터 연산으로 메모리 주소 조작하기 //
+// 덧셈
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+    int* numPtrB;
+    int* numPtrC;
+
+    numPtrA = numArr;
+
+    numPtrB = numPtrA + 1;
+    numPtrC = numPtrA + 2;
+
+    printf("%p\n", numPtrA);    // 008FFA0C
+    printf("%p\n", numPtrB);    // 008FFA10
+    printf("%p\n", numPtrC);    // 008FFA14
+
+    return 0;
+}
+
+// 뺄셈
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+    int* numPtrB;
+    int* numPtrC;
+
+    numPtrA = &numArr[2];
+
+    numPtrB = numPtrA - 1;
+    numPtrC = numPtrA - 2;
+
+    printf("%p\n", numPtrA);    // 006FFCD0
+    printf("%p\n", numPtrB);    // 006FFCCC
+    printf("%p\n", numPtrC);    // 006FFCC8
+
+    return 0;
+}
+
+// 증감 연산자 사용하기
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+    int* numPtrB;
+    int* numPtrC;
+
+    numPtrA = &numArr[2];
+
+    numPtrB = numPtrA;
+    numPtrC = numPtrA;
+
+    numPtrB++;
+    numPtrC--;
+
+    printf("%p\n", numPtrA);    // 00EFF8B8
+    printf("%p\n", numPtrB);    // 00EFF8BC
+    printf("%p\n", numPtrC);    // 00EFF8B4
+    
+    return 0;
+}
+
+// 59.2 포인터 연산과 역참조 사용하기 //
+// 역참조
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+    int* numPtrB;
+    int* numPtrC;
+
+    numPtrA = numArr;
+
+    numPtrB = numPtrA + 1;
+    numPtrC = numPtrA + 2;
+
+    printf("%d\n", *numPtrB);    // 22
+    printf("%d\n", *numPtrC);    // 33
+    
+    return 0;
+}
+
+// 포인터 연산과 동시에 역참조 연산
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+
+    numPtrA = numArr;
+
+    printf("%d\n", *(numPtrA + 1));    // 22
+    printf("%d\n", *(numPtrA + 2));    // 33
+    
+    return 0;
+}
+
+// 증감 연산자와 역참조 연산자
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    int* numPtrA;
+    int* numPtrB;
+    int* numPtrC;
+
+    numPtrA = &numArr[2];
+
+    numPtrB = numPtrA;
+    numPtrC = numPtrA;
+
+    printf("%d\n", *(++numPtrB));    // 44
+    printf("%d\n", *(--numPtrC));    // 22
+    
+    return 0;
+}
+
+// 59.3 void 포인터로 포인터 연산하기 //
+// 포인터 연산
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    void* ptr = malloc(100);
+
+    printf("%p\n", ptr);
+    printf("%p\n", (int *)ptr + 1);
+    printf("%p\n", (int *)ptr - 1);
+
+    void* ptr2 = ptr;
+    printf("%p\n", ++(int *)ptr2);
+    printf("%p\n", --(int *)ptr2);
+
+    printf("%p\n", ((int *)ptr2)++);
+    printf("%p\n", ((int *)ptr2)--);
+
+    free(ptr);
+    
+    return 0;
+}
+
+// void 포인터 연산 후 역참조
+#include <stdio.h>
+
+int main()
+{
+    int numArr[5] = { 11, 22, 33, 44, 55 };
+    void* ptr = &numArr[2];
+
+    printf("%d\n", *(int*)ptr);          // 33
+
+    printf("%d\n", *((int*)ptr + 1));    // 44
+    printf("%d\n", *((int*)ptr - 1));    // 22
+
+    printf("%d\n", *(++(int*)ptr));      // 44
+    printf("%d\n", *(--(int*)ptr));      // 33
+
+    printf("%d\n", *(((int*)ptr)++));    // 33
+    printf("%d\n", *(((int*)ptr)--));    // 44
+    
+    return 0;
+}
+
+// 59.4 구조체 포인터로 포인터 연산하기 //
+// 구조체 포인터 연산
+#include <stdio.h>
+
+struct Data {
+    int num1;
+    int num2;
+};
+
+int main()
+{
+    struct Data d[3] = { { 10, 20 }, { 30, 40 }, { 50, 60 } };
+    struct Data* ptr;
+
+    ptr = d;
+
+    printf("%d %d\n", (ptr + 1)->num1, (ptr + 1)->num2);    // 30 40
+    printf("%d %d\n", (ptr + 2)->num1, (ptr + 2)->num2);    // 50 60
+    
+    return 0;
+}
+
+// 동적 메모리 할당 후 연산
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Data {
+    int num1;
+    int num2;
+};
+
+int main()
+{
+    void* ptr = malloc(sizeof(struct Data) * 3);
+    struct Data d[3];
+
+    ((struct Data*)ptr)->num1 = 10;
+    ((struct Data*)ptr)->num2 = 20;
+
+    ((struct Data*)ptr + 1)->num1 = 30;
+    ((struct Data*)ptr + 1)->num2 = 40;
+
+    ((struct Data*)ptr + 2)->num1 = 50;
+    ((struct Data*)ptr + 2)->num2 = 60;
+
+    memcpy(d, ptr, sizeof(struct Data) * 3);
+
+    printf("%d %d\n", d[1].num1, d[1].num2);    // 30 40
+    printf("%d %d\n", ((struct Data*)ptr + 2)->num1, ((struct Data*)ptr + 2)->num2);    // 50 60
+    
+    free(ptr);
+
+    return 0;
+}
+
+// 심사문제: 포인터 연산으로 메모리 주소 조작하기
+
+// 심사문제: 포인터 연산과 역참조 사용하기
+
+// 심사문제: 구조체 포인터로 포인터 연산하기
