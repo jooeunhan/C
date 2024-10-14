@@ -1,0 +1,95 @@
+// 60.1 Hello, world! 출력 함수 만들기 //
+#include <stdio.h>
+
+void hello()    // 함수는 main 함수 바깥에 정
+{
+    printf("Hello, world!\n");
+}
+
+int main()
+{
+    hello();    // 함수에 의해 Hello, world!가 출력
+
+    return 0;
+}
+
+// 60.2 함수 선언과 정의 분리하기 //
+// 오류 발생
+#include <stdio.h>
+
+int main()
+{
+    hello();
+
+    return 0;
+}
+
+void hello()
+{
+    printf("Hello, world!\n");
+}
+
+// 함수 선언
+#include <stdio.h>
+
+void hello();    // 함수 선언
+
+int main()
+{
+    hello();
+
+    return 0;
+}
+
+void hello()
+{
+    printf("Hello, world!\n");    // 함수 정의
+}
+
+// 60.3 함수 디버깅하기 //
+// 위에서부터 실행됨을 알 수 있음
+
+// 심사문제: 함수 정의하기
+#include <stdio.h>
+
+void printIPAddress()
+{
+    printf("192.168.10.5\n");
+}
+
+void printHostname()
+{
+    printf("Jupiter\n");
+}
+
+int main()
+{
+    printIPAddress();
+    printHostname();
+
+    return 0;
+}
+
+// 심사문제: 함수 선언하기
+#include <stdio.h>
+
+void printName();
+void printOrdinal();
+
+int main()
+{
+    printName();
+    printOrdinal();
+
+    return 0;
+}
+
+void printName()
+{
+    printf("Beethoven\n");
+}
+
+void printOrdinal()
+{
+    printf("9th Symphony\n");
+}
