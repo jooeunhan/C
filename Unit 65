@@ -1,0 +1,164 @@
+// 65.1 구조체 매개변수 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+void printPerson(struct Person p)
+{
+    // 구조체 매개변수 멤버의 값 출력
+    printf("이름: %s\n", p.name);
+    printf("나이: %d\n", p.age);
+    printf("주소: %s\n", p.address);
+}
+
+int main()
+{
+    struct Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    printPerson(p1);    // 함수를 호출할 때 구조체 변수 전달, 멤버가 복사됨
+
+    return 0;
+}
+
+// 매개변수로 받은 구조체 멤버의 값 변경 - 영향 X
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+void setPerson(struct Person p)
+{
+    // 매개변수로 받은 구조체 멤버의 값 변경
+    strcpy(p.name, "고길동");
+    p.age = 40;
+    strcpy(p.address, "서울시 서초구 반포동");
+}
+
+int main()
+{
+    struct Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    setPerson(p1);    // 함수를 호출할 때 구조체 변수 전달, 멤버가 복사됨
+
+    // setPerson에서 변경한 값은 영향을 미치지 않음
+    printf("이름: %s\n", p1.name);       // 이름: 홍길동
+    printf("나이: %d\n", p1.age);        // 나이: 30
+    printf("주소: %s\n", p1.address);    // 주소: 서울시 용산구 한남동
+
+    return 0;
+}
+
+// 65.2 구조체 포인터 매개변수 사용하기 //
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[20];
+    int age;
+    char address[100];
+};
+
+void setPerson(struct Person *p)    // 반환값 없음, 구조체 포인터 매개변수 한 개 지정
+{
+    // 매개변수로 받은 포인터에서 구조체 멤버의 값 변경
+    strcpy(p->name, "고길동");
+    p->age = 40;
+    strcpy(p->address, "서울시 서초구 반포동");
+}
+
+int main()
+{
+    struct Person p1;
+
+    strcpy(p1.name, "홍길동");
+    p1.age = 30;
+    strcpy(p1.address, "서울시 용산구 한남동");
+
+    setPerson(&p1);    // 함수를 호출할 때 구조체 변수의 메모리 주소를 전달
+
+    // setPerson에서 변경한 값이 출력됨
+    printf("이름: %s\n", p1.name);       // 이름: 고길동
+    printf("나이: %d\n", p1.age);        // 나이: 40
+    printf("주소: %s\n", p1.address);    // 주소: 서울시 서초구 반포동
+
+    return 0;
+}
+
+// 심사문제: 두 점 사이의 거리를 구하는 함수 만들기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+
+struct Point2D {
+    int x;
+    int y;
+};
+
+double getDistance (struct Point2D p1, struct Point2D p2)
+{
+    double a = p2.x - p1.x;
+    double b = p2.y - p1.y;
+    
+    return sqrt ((a * a) + (b * b));
+}
+
+int main()
+{
+    struct Point2D p1;
+    struct Point2D p2;
+
+    scanf("%d %d %d %d", &p1.x, &p1.y, &p2.x, &p2.y);
+
+    printf("%f\n", getDistance(p1, p2));
+
+    return 0;
+}
+
+// 심사문제: 좌표를 이동시키는 함수 만들기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+struct Point2D {
+    int x;
+    int y;
+};
+ 
+void movePoint2D (struct Point2D *p1, int offsetX, int offsetY)
+{
+    p1->x = p1->x + offsetX;
+    p1->y = p1->y + offsetY;
+}
+
+int main()
+{
+    struct Point2D p1;
+    int offsetX, offsetY;
+ 
+    scanf("%d %d %d %d", &p1.x, &p1.y, &offsetX, &offsetY);
+
+    movePoint2D(&p1, offsetX, offsetY);
+
+    printf("%d %d\n", p1.x, p1.y);
+
+    return 0;
+}
