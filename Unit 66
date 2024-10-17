@@ -1,0 +1,181 @@
+// 66.1 가변 인자 함수 만들기 //
+#include <stdio.h>
+
+void printNumbers(int args, ...)
+{
+    printf("%d ", args);
+}
+
+int main()
+{
+    printNumbers(1, 10);
+    printNumbers(2, 10, 20);
+    printNumbers(3, 10, 20, 30);
+    printNumbers(4, 10, 20, 30, 40);
+
+    // 출력값: 1, 2, 3, 4
+
+    return 0;
+}
+
+// ... 부분의 매개변수 사용
+#include <stdio.h>
+#include <stdarg.h>
+
+void printNumbers(int args, ...)
+{
+    va_list ap;    // 가변 인자 목록, 가변 인자의 메모리 주소 저장 포인터
+
+    va_start(ap, args);    // 가변인자를 가져올 수 있도록 포인터 설정
+    for (int i = 0; i < args; i++)
+    {
+        int num = va_arg(ap, int);    // 가변 인자 포인터에서 특정 자료형 크기만큼 값을 가져
+
+        printf("%d ", num);
+    }
+    va_end(ap);    // 가변 인자 처리가 끝났을 때 값을 NULL로 초기화
+
+    printf("\n");
+
+    /* 출력값: 10
+               10 20
+               10 20 30
+               10 20 30 40 */
+}
+
+int main()
+{
+    printNumbers(1, 10);
+    printNumbers(2, 10, 20);
+    printNumbers(3, 10, 20, 30);
+    printNumbers(4, 10, 20, 30, 40);
+
+    return 0;
+}
+
+// 66.2 자료형이 다른 가변 인자 함수 만들기 //
+#include <stdio.h>
+#include <stdarg.h>
+
+void printValues(char* types, ...)
+{
+    va_list ap;
+    int i = 0;
+
+    va_start(ap, types);
+    while (types[i] != '\0')
+    {
+        switch (types[i])
+        {
+        case 'i':
+            printf("%d ", va_arg(ap, int));
+            break;
+        case 'd':
+            printf("%f ", va_arg(ap, double));
+            break;
+        case 'c':
+            printf("%c ", va_arg(ap, char));
+            break;
+        case 's':
+            printf("%s ", va_arg(ap, char*));
+            break;
+        default:
+            break;
+        }
+        i++;
+    }
+    va_end(ap);
+
+    printf("\n");
+}
+
+int main()
+{
+    printValues("i", 10);                                       // 정수
+    printValues("ci", 'a', 10);                                 // 문자, 정수
+    printValues("dci", 1.234567, 'a', 10);                      // 실수, 문자, 정수
+    printValues("sicd", "Hello, world!", 10, 'a', 1.234567);    // 문자열, 정수, 문자, 실수
+
+    return 0;
+}
+
+// 심사문제: 가변 인자의 합 구하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdarg.h>
+
+int sum(int args, ...)
+{
+    int result = 0;
+    va_list ap;
+    va_start(ap, args);
+    for (int i = 0; i < args; i++)
+    {
+        result += va_arg(ap, int);
+    }
+    va_end(ap);
+    return result;
+}
+
+int main()
+{
+    int num1, num2;
+    int num3, num4, num5;
+
+    scanf("%d %d", &num1, &num2);
+    scanf("%d %d %d", &num3, &num4, &num5);
+
+    printf("%d\n", sum(2, num1, num2));
+    printf("%d\n", sum(3, num3, num4, num5));
+
+    return 0;
+}
+
+// 심사문제: 가변 인자의 정수 합 구하기
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdarg.h>
+
+int getSum(char *args, ...)
+{
+    int result = 0;
+    va_list ap;
+    int i = 0;
+
+    va_start(ap, args);
+    while (args[i] != '\0')
+    {
+        switch (args[i])
+        {
+        case 'i':
+            result += va_arg(ap, int);
+            break;
+        case 'd':
+            va_arg(ap, double);
+            break;
+        case 's':
+            va_arg(ap, char*);
+            break;
+        default:
+            break;
+        }
+        i++;
+    }
+    va_end(ap);
+    return result;
+}
+
+int main()
+{
+    int num1, num2, num3;
+
+    scanf("%d %d %d", &num1, &num2, &num3);
+
+    printf("%d\n", getSum("isi", num1, "C", 10));
+    printf("%d\n", getSum("sdsi", "Hello, world!", 5.3, "A", num2));
+    printf("%d\n", getSum("iiss", 25, 38, "k", "R"));
+    printf("%d\n", getSum("sidii", "Hello, C", num3, 2.234567, 878, 1291));
+
+
+    return 0;
+}
