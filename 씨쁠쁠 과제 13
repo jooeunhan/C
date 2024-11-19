@@ -14,8 +14,10 @@ int main() {
 		int fpIndex = s.find('+', startIndex);
 		int fmIndex = s.find('-', startIndex);
 		if (fpIndex == -1) {
-			string part = s.substr(startIndex);
-			if (part == "") break;
+			string ppart = s.substr(startIndex);
+			if (ppart == "") break;
+			cout << ppart << endl;
+			calculate += stoi(ppart);
 		}
 	}
 }
