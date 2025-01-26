@@ -74,11 +74,11 @@ int main()
 // 14.5 심사문제 //
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#define _USE_MATH_DEFINES
-#include <math.h>
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+#define _USE_MATH_DEFINES    // <math.h>에서 추가적인 수학 상수 활성화, 표준 라이브러리에서 비활성화 되어있기 때문에 매크로 정의 필요
+#include <math.h>    // sqrt, sin, cos와 같은 수학 함수, 상수 사용, 이 코드에서는 M_PI 사용하기 위해 포함
+#ifndef M_PI    // M_PI가 정의되어 있지 않은 경우에 코드 실행하라는 조건부 컴파일 지시문
+#define M_PI 3.14159265358979323846    // 위의 #ifndef M_PI가 참인 경우, 즉 M_PI가 아직 정의되지 않았다면 M_PI를 정의
+#endif    // 조건부 블록의 끝을 나타냄, 없으면 ifndef된 조건이 어디서 끝나는 지 몰라 구문 오류류
 
 int main()
 {
