@@ -29,8 +29,8 @@ int main()
     num3 = num1 << 2;
     num4 = num2 >> 2;
 
-    printf("%d\n", num3);    // 192: 1100 0000
-    printf("%d\n", num4);    // 3: 0000 0011
+    printf("%d\n", num3);    // 192: 1100 0000: 맨 앞의 11이 사라져서 1100 0000이 됨
+    printf("%d\n", num4);    // 3: 0000 0011: 맨 뒤의 11이 사라져서 0000 0011이 
 
     return 0;
 }
@@ -41,8 +41,8 @@ int main()
     
 int main()
 {
-    unsigned char num1 = 131;
-    char num2 = -125;
+    unsigned char num1 = 131;    // 131: 1000 0011
+    char num2 = -125;            // -125: 1000 0011 (2의 보수)
 
     unsigned char num3;
     char num4;
@@ -50,8 +50,8 @@ int main()
     num3 = num1 >> 5;
     num4 = num2 >> 5;
 
-    printf("%u\n", num3);    // 4
-    printf("%d\n", num4);    // -4
+    printf("%u\n", num3);    // 4: 0000 0100: 
+    printf("%d\n", num4);    // -4: 1111 1100: 
 
     return 0;
 }
@@ -66,7 +66,7 @@ int main()
 
     num2 = num1 >> 5;
 
-    printf("%d\n", num2);      // 2
+    printf("%d\n", num2);      // 2: 0000 0010
 
     return 0;
 }
@@ -86,15 +86,16 @@ int main()
     num5 = num1 << 4;
     num6 = num2 << 4;
 
-    printf("%d\n", num3);    // -60: 1100 0001
+    printf("%d\n", num3);    // -60: 1100 0100: 부호 비트를 덮어쓰게 되므로 양수에서 음수가 됨(오버플로우 상황)
     printf("%d\n", num4);    // -60
     printf("%d\n", num5);    // 16: 0001 0000
-    printf("%d\n", num6);    // 16
+    printf("%d\n", num6);    // 16: 부호 비트를 덮어쓰게 되므로 음수에서 양수가 됨(오버플로우 상황)
 
     return 0;
 }
 
 // 24.4 비트 연산자로 플래그 처리하기 //
+// => 리눅스, 하드웨어에서 주로 사용
 // 특정 비트를 켜는 법
 #include <stdio.h>
     
